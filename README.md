@@ -1,5 +1,5 @@
 # linux cheatsheet
-##Linux Basic Command
+## Linux Basic Command
 <br/>1.ls {Lists all files and directories in the present working directory}
 <br/>2.ls -R {Lists files in sub-directories as well}
 <br/>3.ls -a	{Lists hidden files as well}
@@ -23,7 +23,7 @@
 <br/>21.pr -h	{Assigns a header to the file}
 <br/>22.apt-get {Command used to install and update packages}
 <br/>
-##File Permission
+## File Permission
 <br/>1.ls -l	{to show file type and access permission}
 <br/>2. r{read permission}
 <br/>3.w {write permission}
