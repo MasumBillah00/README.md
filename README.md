@@ -29,5 +29,6 @@
 <br/>3.w 		{write permission}
 <br/>4.x 		{execute permission}
 <br/>5. Chown user		{For changing the ownership of a file/directory}
-
+<br/>6. chmod u+x file_name {add execute permissions for the owner}
+<br/>7. chmod g+rw file_name{dd read and write permissions for the group }
 
