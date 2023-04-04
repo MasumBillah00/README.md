@@ -31,4 +31,28 @@
 <br/>5. Chown user		{For changing the ownership of a file/directory}
 <br/>6. chmod u+x file_name {add execute permissions for the owner}
 <br/>7. chmod g+rw file_name{dd read and write permissions for the group }
+#Apache for static web
+###uninstall Apache2
+<br/>sudo service apache2 stop
+<br/>sudo apt-get remove apache2
+<br/>sudo apt-get purge apache2
+<br/>sudo apt-get autoremove
+<br/>sudo rm -rf /etc/apache2
+##install apache2
+<br/>sudo apt-get install apache2
+<br/>apache2 -version
+###SSH Connection
+<br/>ssh -i nibir.pem username(ubuntu)@3.86.200.159
+<br/>sudo su
+<br/>sudo apt-get update
+<br/>systemctl status apache2
+<br/>cd var/www/html/
+<br/> use nano for edit index.html
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
 
