@@ -39,6 +39,7 @@
 <br/>sudo apt-get autoremove
 <br/>sudo rm -rf /etc/apache2
 ## install apache2
+</br>apt-get install httpd -y
 <br/>sudo apt-get install apache2
 <br/>apache2 -version
 ### SSH Connection
