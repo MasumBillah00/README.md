@@ -7,6 +7,7 @@
 <br/>5.cd or cd 	{	Navigate to HOME directory}
 <br/>6.cd ..			{Move one level up}
 <br/>7.cd	 	{To change to a particular directory}
+<br/> cd /folder/folder/folder {direct path}
 <br/>8.cd /	 	{Move to the root directory}
 <br/>9.cat > filename		{ Creates a new file}
 <br/>10.cat filename		{Displays the file content}
