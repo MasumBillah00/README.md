@@ -1,3 +1,127 @@
+import 'dart:async';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+abstract class AuthEvent {}
+
+class LoginEvent extends AuthEvent {}
+
+class LogoutEvent extends AuthEvent {}
+
+abstract class AuthState {}
+
+class LoggedOutState extends AuthState {}
+
+class LoggedInState extends AuthState {}
+
+class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  Timer? _logoutTimer;
+
+  AuthBloc() : super(LoggedOutState()) {
+    on<LoginEvent>((event, emit) {
+      emit(LoggedInState());
+      _startLogoutTimer();
+    });
+
+    on<LogoutEvent>((event, emit) {
+      _logoutTimer?.cancel();
+      emit(LoggedOutState());
+    });
+  }
+
+  void _startLogoutTimer() {
+    _logoutTimer?.cancel();
+    _logoutTimer = Timer(Duration(minutes: 3), () {
+      add(LogoutEvent());
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _logoutTimer?.cancel();
+    return super.close();
+  }
+}
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'auth_bloc.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => AuthBloc(),
+      child: MaterialApp(
+        home: AuthWrapper(),
+      ),
+    );
+  }
+}
+
+class AuthWrapper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) {
+        if (state is LoggedOutState) {
+          return LoginPage();
+        } else if (state is LoggedInState) {
+          return HomePage();
+        } else {
+          return SizedBox();
+        }
+      },
+    );
+  }
+}
+
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Login'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            context.read<AuthBloc>().add(LoginEvent());
+          },
+          child: Text('Login'),
+        ),
+      ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            context.read<AuthBloc>().add(LogoutEvent());
+          },
+          child: Text('Logout'),
+        ),
+      ),
+    );
+  }
+}
+
+
+******---------******
+
+
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.baseflow.permissionhandler.example">
